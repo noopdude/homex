@@ -15,14 +15,14 @@
       <div>
 
         <label for="username">Username:  </label>
-        <input type="text" name="username" value="">
+        <input type="text" name="username" required>
 
       </div>
 
       <div>
 
         <label for="password">Password:  </label>
-        <input type="text" name="password_1" value="">
+        <input type="text" name="password" required>
 
       </div>
 
