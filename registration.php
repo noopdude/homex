@@ -6,10 +6,11 @@
         <title>Registration | Home-X</title>
     </head>
     <body>
+        <link rel="stylesheet" href="./css/styles.css">
         <div class="container">
 
             <div class="header">
-                <h2>Register yourself</h2>
+                <h2>Home-X | Register yourself</h2>
             </div>
 
             <?php if(!(isset($_SESSION['username']))) :  ?>

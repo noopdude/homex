@@ -24,6 +24,7 @@
     </head>
 
     <body>
+        <link rel="stylesheet" href="./css/styles.css">
 
         <h1>Manage Service Requests</h1>
 

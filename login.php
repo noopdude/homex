@@ -5,11 +5,12 @@
         <title>Login | Home-X</title>
     </head>
     <body>
+        <link rel="stylesheet" href="./css/styles.css">
         <?php if(!(isset($_SESSION['username']))) :  ?>
             <div class="container">
 
                 <div class="header">
-                    <h2>Log In</h2>
+                    <h2>Home-X | Log In</h2>
 
                     </div>
 

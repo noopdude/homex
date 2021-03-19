@@ -31,6 +31,23 @@ AUTO_INCREMENT = 12
 DEFAULT CHARACTER SET = utf8;
 
 
+-- -----------------------------------------------------
+-- Table `homex`.`service_request`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `homex`.`service_request` (
+  `sr_id` INT NOT NULL AUTO_INCREMENT,
+  `summary` VARCHAR(256) NULL DEFAULT NULL,
+  `description` VARCHAR(1000) NULL DEFAULT NULL,
+  `status` VARCHAR(45) NULL DEFAULT NULL,
+  `created_dt` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `closed_dt` DATETIME NULL DEFAULT NULL,
+  `username` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`sr_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
