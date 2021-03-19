@@ -7,33 +7,35 @@
     <body>
         <link rel="stylesheet" href="./css/styles.css">
         <?php if(!(isset($_SESSION['username']))) :  ?>
-            <div class="container">
+            <div class="login">
+
+                <img src="./img/logo.jpg" alt="logo" style="width:20%">
 
                 <div class="header">
-                    <h2>Home-X | Log In</h2>
+                    <h1>Home-X | Log In</h1>
 
-                    </div>
+                </div>
 
-                    <form action="login.php" method="post">
+                <form action="login.php" method="post">
 
                     <?php include('errors.php') ?>
-                <div>
+                    <div>
 
-                    <label for="username">Username:  </label>
-                    <input type="text" name="username" required>
+                        <label for="username">Username:  </label>
+                        <input type="text" name="username" required>
 
-                </div>
+                    </div>
+                    <br>
+                    <div>
 
-                <div>
+                        <label for="password">Password:  </label>
+                        <input type="password" name="password" required>
 
-                    <label for="password">Password:  </label>
-                    <input type="password" name="password" required>
+                    </div>
+                    <br>
+                    <button type="submit" class="button" name="login_user"> Log In </button>
 
-                </div>
-
-                <button type="submit" name="login_user"> Log In </button>
-
-                <p>Not a user? <a href="registration.php"><b>Register Here</b></a> </p>
+                    <p>Not a user? <a href="registration.php"><b>Register Here</b></a> </p>
 
                 </form>
 

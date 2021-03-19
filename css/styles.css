@@ -1,8 +1,52 @@
 body{
-  background-color: powderblue;
+  background-color: #ffffff;
+  /*text-align: center; */
+  font-family: Helvetica;
+  color:#555555;
+}
+form {
+    display: inline-block;
+}
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+}
+.login{
+  width: 90%;
+  margin: auto;
+  border: 10px #b9a9a9 solid;
+  padding-bottom: 10%;
+  padding-top: 10%;
+  background-color: #1777a7;
+  border-radius: 50px;
+  text-align: center;
+}
+.logo{
+  background-image: url(../img/logo.jpg);
+  width:100px;
+  height:100px;
+
+}
+img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 p{
   color:black
 }
 
+h1{
+  font-size: 45px
+}
+
+h3{
+  color:Green
 }
