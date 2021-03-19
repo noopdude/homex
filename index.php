@@ -10,7 +10,7 @@ if(isset($_SESSION['username'])){
 else{
 
   $_SESSION['msg'] = "You must be logged in to view this page";
-  header("location : login.php");
+  header("location:login.php");
 
 }
 
@@ -18,7 +18,7 @@ if(isset($_GET['logout'])){
 
   session_destroy();
   unset($_SESSION['username']);
-  header("location : login.php");
+  header("location:login.php");
 
 }
 

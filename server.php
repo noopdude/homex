@@ -1,3 +1,4 @@
+<?php include "./config/dbinfo.inc" ?>
 <?php
 session_start();
 
@@ -10,7 +11,9 @@ $errors = array();
 
 // connect to // DEBUG:
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-$db = mysqli_connect('localhost', 'homex', 'Welcome2LIAN') or die("could not connect to the database") ;
+$db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD);
+
+//$db = mysqli_connect('localhost', 'homex', 'Welcome2LIAN') or die("could not connect to the database") ;
 
 //Register users
 
