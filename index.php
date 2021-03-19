@@ -36,13 +36,13 @@ if(isset($_GET['logout'])){
     <?php if(isset($_SESSION['success'])) :   ?>
 
       <div>
-          <h3>
+          <h4>
               <?php
                 echo $_SESSION['success'];
                 unset($_SESSION['success']);
 
                ?>
-          </h3>
+          </h4>
 
       </div>
 
@@ -55,11 +55,17 @@ if(isset($_GET['logout'])){
 
       <h3>Welcome <strong><?php echo $_SESSION['username']; ?> ! </strong> </h3>
 
+      <div class="categories">
+          <h2>Menu</h2>
+          <ul>
+            <li><a href="servicerequest.php">Service Requests</a></li>
+            <li><a href="payments.php">Payments</a></li>
+            <li><a href="inbox.php">Inbox</a></li>
+            <li><a href="news.php">News and Announcements</a></li>
+          </ul>
+      </div>
 
-      <a href="servicerequest.php">Service Requests</a><br>
-      <a href="payments.php">Payments</a><br>
-      <a href="inbox.php">Inbox</a><br>
-      <a href="news.php">Announcements, News and Updates</a>
+    
       <br><br><br>
       <strong> <a href="index.php?logout='1'">Log Out</a> </strong>
 

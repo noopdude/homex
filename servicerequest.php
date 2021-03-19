@@ -26,16 +26,15 @@
     <body>
         <link rel="stylesheet" href="./css/styles.css">
 
-        <h1>Manage Service Requests</h1>
+
 
         <!--if the user logs in print information about him -->
 
         <?php if(isset($_SESSION['username'])) :  ?>
+            <h1>Home-X | Manage Service Requests | Logged in : <strong><?php echo $_SESSION['username']; ?> </strong> </h1>
+            <!--<h3>Welcome <strong><?php echo $_SESSION['username']; ?> </strong> </h3>-->
 
-            <h3>Welcome <strong><?php echo $_SESSION['username']; ?> </strong> </h3>
-
-
-
+                <h2>Create a Service Request</h2>
                 <form action="servicerequest.php" method="POST">
 
                 <input type="text" name="SUMMARY" maxlength="45" size="30" />
@@ -85,7 +84,8 @@ if(!mysqli_query($db, $query)) {
   echo("<p>Error creating the Ticket.</p>");
 }
 else{
-  echo "Thank you!, your request has been submitted.";
+  echo "<br><br><br><br>";
+  echo "<h3>Thank you! Your request has been submitted</h3>";
 
 }
 
