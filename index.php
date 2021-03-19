@@ -30,7 +30,7 @@ if(isset($_GET['logout'])){
   </head>
 
   <body>
-
+    <link rel="stylesheet" href="./css/styles.css">
     <h1>Welcome to Home-X!</h1>
 
     <?php if(isset($_SESSION['success'])) :   ?>
