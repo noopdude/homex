@@ -1,55 +1,65 @@
 <?php include('server.php') ?>
+
 <!doctype html>
 <html>
-  <head>
-    <title>Registration</title>
+    <head>
+        <title>Registration | Home-X</title>
     </head>
-  <body>
-<div class="container">
+    <body>
+        <div class="container">
 
-    <div class="header">
-        <h2>Register</h2>
+            <div class="header">
+                <h2>Register yourself</h2>
+            </div>
 
-    </div>
+            <?php if(!(isset($_SESSION['username']))) :  ?>
 
-    <form action="registration.php" method="post">
+                <form action="registration.php" method="post">
 
-      <?php include('errors.php') ?>
+                    <?php include('errors.php') ?>
 
-      <div>
+                    <div>
 
-        <label for="username">Username:  </label>
-        <input type="text" name="username" required>
+                        <label for="username">Username:  </label>
+                        <input type="text" name="username" required>
 
-      </div>
+                    </div>
 
-      <div>
+                    <div>
 
-        <label for="email">Email:  </label>
-        <input type="text" name="email" required>
+                        <label for="email">Email:  </label>
+                        <input type="text" name="email" required>
 
-      </div>
+                    </div>
 
-      <div>
+                    <div>
 
-        <label for="password">Password:  </label>
-        <input type="password" name="password_1" required>
+                        <label for="password">Password:  </label>
+                        <input type="password" name="password_1" required>
 
-      </div>
+                    </div>
 
-      <div>
+                    <div>
 
-        <label for="password">Confirm Password:  </label>
-        <input type="password" name="password_2" required>
+                        <label for="password">Confirm Password:  </label>
+                        <input type="password" name="password_2" required>
 
-      </div>
+                    </div>
 
-      <button type="submit" name="reg_user"> Submit </button>
+                    <button type="submit" name="reg_user"> Submit </button>
 
-      <p>Already a user? <a href="login.php"><b>Log in</b></a> </p>
+                    <p>Already a user? <a href="login.php"><b>Log in</b></a> </p>
 
-    </form>
+                </form>
 
-</div>
-  </body>
+
+            <?php else : ?>
+
+                <?php header("location:index.php"); ?>
+
+            <?php endif  ?>
+
+
+        </div>
+    </body>
 </html>
