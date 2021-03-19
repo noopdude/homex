@@ -1,41 +1,46 @@
 <?php include('server.php') ?>
 <!doctype html>
 <html>
-  <head>
-    <title>Login</title>
+    <head>
+        <title>Login | Home-X</title>
     </head>
-  <body>
-<div class="container">
+    <body>
+        <?php if(!(isset($_SESSION['username']))) :  ?>
+            <div class="container">
 
-    <div class="header">
-        <h2>Log In</h2>
+                <div class="header">
+                    <h2>Log In</h2>
 
-    </div>
+                    </div>
 
-    <form action="login.php" method="post">
+                    <form action="login.php" method="post">
 
-          <?php include('errors.php') ?>
-      <div>
+                    <?php include('errors.php') ?>
+                <div>
 
-        <label for="username">Username:  </label>
-        <input type="text" name="username" required>
+                    <label for="username">Username:  </label>
+                    <input type="text" name="username" required>
 
-      </div>
+                </div>
 
-      <div>
+                <div>
 
-        <label for="password">Password:  </label>
-        <input type="password" name="password" required>
+                    <label for="password">Password:  </label>
+                    <input type="password" name="password" required>
 
-      </div>
+                </div>
 
+                <button type="submit" name="login_user"> Log In </button>
 
-      <button type="submit" name="login_user"> Log In </button>
+                <p>Not a user? <a href="registration.php"><b>Register Here</b></a> </p>
 
-      <p>Not a user? <a href="registration.php"><b>Register Here</b></a> </p>
+                </form>
 
-    </form>
+            </div>
+        <?php else : ?>
 
-</div>
-  </body>
+            <?php header("location:index.php"); ?>
+
+        <?php endif  ?>
+    </body>
 </html>

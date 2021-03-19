@@ -26,12 +26,12 @@ if(isset($_GET['logout'])){
 <!doctype html>
 <html>
   <head>
-    <title>Home-X Home Page</title>
+    <title>Home-X | Home Page</title>
   </head>
 
   <body>
 
-    <h1>Welcome to Home-X home page</h1>
+    <h1>Welcome to Home-X!</h1>
 
     <?php if(isset($_SESSION['success'])) :   ?>
 
@@ -53,19 +53,19 @@ if(isset($_GET['logout'])){
 
     <?php if(isset($_SESSION['username'])) :  ?>
 
-      <h3>Welcome <strong><?php echo $_SESSION['username']; ?> </strong> </h3>
+      <h3>Welcome <strong><?php echo $_SESSION['username']; ?> ! </strong> </h3>
 
-      <h1>Hello </h1>
-      <a href="service_request.php">Raise a Support Request</a>
-      <a href="payments.php">Make a Payment Request</a>
-      <a href="inbox.php">View your Reminders and take actions</a>
-      <a href="news.php">View announcements, news and updates</a>
+
+      <a href="servicerequest.php">Service Requests</a><br>
+      <a href="payments.php">Payments</a><br>
+      <a href="inbox.php">Inbox</a><br>
+      <a href="news.php">Announcements, News and Updates</a>
       <br><br><br>
-      <a href="index.php?logout='1'">Log Out</a>
+      <strong> <a href="index.php?logout='1'">Log Out</a> </strong>
 
     <?php else : ?>
 
-    <p> <a href="login.php"><b>Log in</b></a> </p>
+    <p> <strong> <a href="login.php"><b>Log in</b></a> </strong> </p>
 
     <?php endif  ?>
 
