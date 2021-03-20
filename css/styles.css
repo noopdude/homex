@@ -2,13 +2,13 @@ body{
   background-color: #ffffff;
   /*text-align: center; */
   font-family: Helvetica;
-  color:#555555;
+  color:#222222;
 }
 form {
     display: inline-block;
 }
 .button {
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAA50; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
@@ -18,7 +18,121 @@ form {
   font-size: 16px;
   border-radius: 5px;
 }
-.login{
+.button:hover {
+  background-color: #4CBF50;
+}
+.buttonxl {
+  background-color: #4CAA50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 48px;
+  border-radius: 10px;
+}
+a:hover{
+  color: yellow;
+
+}
+.textfield{
+
+  height: 30px;
+  width: 100%
+  border-radius: 5px;
+
+}
+.container{
+  /*width: 90%;
+  margin: auto;
+  border: 10px #b9a9a9 solid;
+  padding-bottom: 10%;
+  padding-top: 10%;
+  background-color: #1777a7;
+  border-radius: 50px;
+  text-align: center;*/
+  border: 10px #b9a9a9 solid;
+  background-color: #1777a7;
+  text-align: center;
+  width: 90%;
+  border-radius: 5px;
+  /*background-color: #f2f2f2;*/
+  padding: 20px;
+}
+.footer{
+  border: 10px #b9a9a9 solid;
+  background-color: #1777a7;
+  text-align: center;
+  width: 90%;
+  border-radius: 5px;
+  /*background-color: #f2f2f2;*/
+  padding: 20px;
+  height: 30px;
+}
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+input[type=password], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+.dropdown {
+  display: inline-block;
+  text-align: center;
+}
+
+.col-25 {
+  float: left;
+  width: 30%;
+  margin-top: 6px;
+}
+.col-20 {
+  float: left;
+  width: 20%;
+  margin-top: 6px;
+}
+.col-40 {
+  float: left;
+  width: 40%;
+  margin-top: 6px;
+}
+.col-33 {
+  float: left;
+  width: 33%;
+  margin-top: 6px;
+}
+.col-50 {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 70%;
+  margin-top: 6px;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.registration{
   width: 90%;
   margin: auto;
   border: 10px #b9a9a9 solid;
@@ -40,13 +154,18 @@ img{
   margin-right: auto;
 }
 p{
-  color:black
+  color:black;
 }
 
 h1{
-  font-size: 45px
+  font-size: 45px;
 }
 
 h3{
-  color:Green
+  color:Black;
+}
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
 }

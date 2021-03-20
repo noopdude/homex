@@ -31,7 +31,7 @@ if(isset($_GET['logout'])){
 
   <body>
     <link rel="stylesheet" href="./css/styles.css">
-    <h1>Welcome to Home-X!</h1>
+
 
     <?php if(isset($_SESSION['success'])) :   ?>
 
@@ -53,22 +53,40 @@ if(isset($_GET['logout'])){
 
     <?php if(isset($_SESSION['username'])) :  ?>
 
-      <h3>Welcome <strong><?php echo $_SESSION['username']; ?> ! </strong> </h3>
 
-      <div class="categories">
-          <h2>Menu</h2>
-          <ul>
-            <li><a href="servicerequest.php">Service Requests</a></li>
-            <li><a href="payments.php">Payments</a></li>
-            <li><a href="inbox.php">Inbox</a></li>
-            <li><a href="news.php">News and Announcements</a></li>
-          </ul>
+
+      <div class="container">
+        <div class = "row">
+            <div class="col-50">
+              <a href="index.php"><img src="/img/logo.JPG" alt="logo" style="width:20%"></a>
+            </div>
+            <div class="col-50">
+              <a href="index.php?logout='1'" class="button">Log Out</a>
+            </div>
+        </div>
+
+        <h1>Welcome to Home-X Dashboard, <strong><?php echo $_SESSION['username']; ?> ! </strong></h1>
+        <div class = "row">
+            <div class="col-50">
+              <a href="servicerequest.php" class="buttonxl">Service Requests</a>
+            </div>
+            <div class="col-50">
+              <a href="payments.php" class="buttonxl">Payments</a>
+            </div>
+        </div>
+        <div class = "row">
+            <div class="col-50">
+              <a href="inbox.php" class="buttonxl">Inbox</a>
+            </div>
+            <div class="col-50">
+              <a href="news.php" class="buttonxl">News and Announcements</a>
+            </div>
+        </div>
+
       </div>
-
-    
-      <br><br><br>
-      <strong> <a href="index.php?logout='1'">Log Out</a> </strong>
-
+      <div class="footer">
+        <p>Home-X Beta Version. Powered by AWS</p>
+      </div>
     <?php else : ?>
 
     <p> <strong> <a href="login.php"><b>Log in</b></a> </strong> </p>
@@ -76,7 +94,5 @@ if(isset($_GET['logout'])){
     <?php endif  ?>
 
     </header>
-
-
   </body>
 </html>
