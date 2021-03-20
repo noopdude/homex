@@ -7,35 +7,50 @@
     <body>
         <link rel="stylesheet" href="./css/styles.css">
         <?php if(!(isset($_SESSION['username']))) :  ?>
-            <div class="login">
-
-                <img src="./img/logo.jpg" alt="logo" style="width:20%">
-
-                <div class="header">
-                    <h1>Home-X | Log In</h1>
-
-                </div>
+            <div class="container">
 
                 <form action="login.php" method="post">
+                  <img src="/img/logo.JPG" alt="logo" style="width:20%">
+
+                  <div class="header">
+                      <h1>Home-X Building Management Portal | Log In</h1>
+
+                  </div>
 
                     <?php include('errors.php') ?>
-                    <div>
-
-                        <label for="username">Username:  </label>
-                        <input type="text" name="username" required>
-
-                    </div>
-                    <br>
-                    <div>
-
-                        <label for="password">Password:  </label>
-                        <input type="password" name="password" required>
+                    <div class = "row">
+                        <div class="col-25">
+                          <label for="username">Username:</label>
+                        </div>
+                        <div class="col-75">
+                          <input type="text" name="username" required>
+                        </div>
 
                     </div>
                     <br>
-                    <button type="submit" class="button" name="login_user"> Log In </button>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="password">Password:  </label>
+                        </div>
+                        <div class="col-75">
+                          <input type="password" name="password" required>
+                        </div>
 
-                    <p>Not a user? <a href="registration.php"><b>Register Here</b></a> </p>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-20">
+                        <p>Not a user?</p>
+                      </div>
+                      <div class="col-40">
+                        <a href="registration.php" class="button">Register Here</a>
+                      </div>
+                      <div class="col-40">
+                        <button type="submit" class="button" name="login_user"> Log In </button>
+                      </div>
+                    </div>
+
+
 
                 </form>
 
@@ -45,5 +60,8 @@
             <?php header("location:index.php"); ?>
 
         <?php endif  ?>
+        <div class="footer">
+          <p>Home-X Beta Version. Powered by AWS</p>
+        </div>
     </body>
 </html>

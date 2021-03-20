@@ -31,19 +31,51 @@
         <!--if the user logs in print information about him -->
 
         <?php if(isset($_SESSION['username'])) :  ?>
-            <h1>Home-X | Manage Service Requests | Logged in : <strong><?php echo $_SESSION['username']; ?> </strong> </h1>
+            <div class="container">
+              <form action="servicerequest.php" method="POST">
+                <div class = "row">
+                    <div class="col-50">
+                      <a href="index.php"><img src="/img/logo.JPG" alt="logo" style="width:20%"></a>
+                    </div>
+                    <div class="col-50">
+                      <a href="index.php?logout='1'" class="button">Log Out</a>
+                    </div>
+                </div>
+
+                <h1>Home-X | Manage Service Requests | Logged in : <strong><?php echo $_SESSION['username']; ?> </strong> </h1>
             <!--<h3>Welcome <strong><?php echo $_SESSION['username']; ?> </strong> </h3>-->
 
                 <h2>Create a Service Request</h2>
-                <form action="servicerequest.php" method="POST">
 
-                <input type="text" name="SUMMARY" maxlength="45" size="30" />
+                <div class = "row">
+                    <div class="col-25">
+                      <label for="SUMMARY">Summary:  </label>
+                    </div>
+                    <div class="col-75">
+                      <input type="text" name="SUMMARY" placeholder="Please provide a summary" maxlength="45" size="30" />
+                    </div>
+                </div>
 
-                <input type="text" name="ISSUE_DESCRIPTION" maxlength="1000" size="60" />
+                <div class = "row">
+                    <div class="col-25">
+                      <label for="SUMMARY">Description:  </label>
+                    </div>
+                    <div class="col-75">
+                      <textarea id="desc" name="ISSUE_DESCRIPTION" placeholder="Describe your request or issue.." style="height:200px"></textarea>
+                    </div>
+                </div>
 
-                <input type="submit" name="submit_sr" value="Submit" onclick="AddIssue()" />
+
+                <!--input type="text" name="ISSUE_DESCRIPTION" maxlength="1000" size="60" /-->
+
+
+                <input type="submit" class="button" name="submit_sr" value="Submit" onclick="AddIssue()" />
 
                 </form>
+              </div>
+              <div class="footer">
+                <p>Home-X Beta Version. Powered by AWS</p>
+              </div>
                 <?php
                     if(isset($_POST['submit_sr'])){
                         /* Connect to MySQL and select the database. */
@@ -63,7 +95,7 @@
                 ?>
 
         <?php endif ?>
-          <p> <a href="index.php"><b>Home-X Home</b></a> </p>
+
     </body>
 </html>
 
