@@ -68,7 +68,7 @@ if(isset($_GET['logout'])){
         <h1>Welcome to your Home-X Dashboard, <strong><?php echo $_SESSION['username']; ?> ! </strong></h1>
         <div class = "row">
             <div class="col-50">
-              <a href="servicerequest.php" class="buttonxl">Service Requests</a>
+              <a href="servicerequestmain.php" class="buttonxl">Service Requests</a>
             </div>
             <div class="col-50">
               <a href="payments.php" class="buttonxl">Payments</a>
