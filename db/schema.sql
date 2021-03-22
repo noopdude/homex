@@ -47,6 +47,25 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8;
 
+-- -----------------------------------------------------
+-- Table `homex`.`payment_ack`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `homex`.`payment_ack` (
+  `payment_ack_id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NULL DEFAULT NULL,
+  `payment_type` VARCHAR(45) NULL DEFAULT NULL,
+  `payment_amount` VARCHAR(45) NULL DEFAULT NULL,
+  `remarks` VARCHAR(1000) NULL DEFAULT NULL,
+  `payment_dt` DATE NULL DEFAULT NULL,
+  `created_dt` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` VARCHAR(45) NULL DEFAULT NULL,
+  `ack_username` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`payment_ack_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 6
+DEFAULT CHARACTER SET = utf8;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

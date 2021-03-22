@@ -178,20 +178,31 @@ h3{
   font-family: Helvetica;
   font-size: 16px;
   text-align: left;
+  text-shadow: 3px;
+  border-radius: 3px;
 }
 
 .container th{
   background-color: green;
   color: black;
+  border-radius: 5px;
+  padding: 5px;
 }
 .container tr{
   color: black;
-  border: 1px solid #4CAA50;
+  border: 1px solid #ddd;
+  background-color: white;
+  border-radius: 2px;
+  padding: 5px;
 
 }
+.container tr:nth-child(even){background-color: #f2f2f2;}
+.container tr:hover {background-color: #ddd;}
 .container td{
   color: black;
-  border: 1px solid #4CAA50;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  padding: 5px;
 
 }
 .statusform{
