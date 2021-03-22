@@ -65,7 +65,7 @@ if(isset($_GET['logout'])){
             </div>
         </div>
 
-        <h1>Welcome to Home-X Dashboard, <strong><?php echo $_SESSION['username']; ?> ! </strong></h1>
+        <h1>Welcome to your Home-X Dashboard, <strong><?php echo $_SESSION['username']; ?> ! </strong></h1>
         <div class = "row">
             <div class="col-50">
               <a href="servicerequest.php" class="buttonxl">Service Requests</a>
@@ -85,7 +85,7 @@ if(isset($_GET['logout'])){
 
       </div>
       <div class="footer">
-        <p>Home-X Beta Version. Powered by AWS</p>
+        <p>Home-X Beta Version | Engineered by LIAN | Powered by AWS</p>
       </div>
     <?php else : ?>
 

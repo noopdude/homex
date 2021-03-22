@@ -61,7 +61,7 @@
 
         <?php endif  ?>
         <div class="footer">
-          <p>Home-X Beta Version. Powered by AWS</p>
+          <p>Home-X Beta Version | Engineered by LIAN | Powered by AWS</p>
         </div>
     </body>
 </html>
