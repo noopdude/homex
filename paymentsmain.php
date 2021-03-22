@@ -67,7 +67,12 @@
 
                   $db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD);
                   $username = $_SESSION['username'];
-                  $query = "SELECT payment_type, payment_amount,payment_dt, created_dt, status FROM homex.payment_ack WHERE username= '$username' and status = '$status' ORDER BY created_dt DESC";
+                  if(isset($_SESSION['admin_flag'])) {
+                      $query = "SELECT payment_type, payment_amount,payment_dt, created_dt, status, username FROM homex.payment_ack WHERE status = '$status' ORDER BY created_dt DESC";
+                  }
+                  else{
+                      $query = "SELECT payment_type, payment_amount,payment_dt, created_dt, status, username FROM homex.payment_ack WHERE username= '$username' and status = '$status' ORDER BY created_dt DESC";
+                  }
                   mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                   $results = $db->query($query);
 
@@ -78,10 +83,11 @@
                       echo "<th>Payment Date</th>";
                       echo "<th>Created Date</th>";
                       echo "<th>Status</th>";
+                      echo "<th>Created By</th>";
                     while($row = $results->fetch_assoc()){
                       //echo $row["summary"];
 
-                      echo "<tr><td>" . $row["payment_type"] . "</td><td>" .$row["payment_amount"] . "</td><td>" .$row["payment_dt"] . "</td><td>" .$row["created_dt"] ."</td><td>" .$row["status"] ."</td></tr>" ;
+                      echo "<tr><td>" . $row["payment_type"] . "</td><td>" .$row["payment_amount"] . "</td><td>" .$row["payment_dt"] . "</td><td>" .$row["created_dt"] ."</td><td>" .$row["status"] . "</td><td>" .$row["username"] . "</td></tr>" ;
                     }
                     echo "</table>";
 

@@ -2,18 +2,13 @@
 
 session_start();
 
-if(isset($_SESSION['username'])){
+if(isset($_SESSION['admin_flag']) ){
 
-  if(isset($_SESSION['admin_flag']) ){
-
-    header("location:indexadmin.php");
-
-  }
 
 }
 else{
 
-  $_SESSION['msg'] = "You must be logged in to view this page";
+  $_SESSION['msg'] = "You dont have privileges to view this page";
   header("location:login.php");
 
 }
@@ -69,21 +64,29 @@ if(isset($_GET['logout'])){
             </div>
         </div>
 
-        <h1>Welcome to your Home-X Dashboard, <strong><?php echo $_SESSION['username']; ?> ! </strong></h1>
+        <h1>Welcome to Home-X Administrator Dashboard, <strong><?php echo $_SESSION['username']; ?> ! </strong></h1>
         <div class = "row">
             <div class="col-50">
-              <a href="servicerequestmain.php" class="buttonxl">Service Requests</a>
+              <a href="servicerequestmain.php" class="buttonxl">Manage Service Requests</a>
             </div>
             <div class="col-50">
-              <a href="paymentsmain.php" class="buttonxl">Payments</a>
+              <a href="paymentsmain.php" class="buttonxl">Manage Payments</a>
             </div>
         </div>
         <div class = "row">
             <div class="col-50">
-              <a href="inbox.php" class="buttonxl">Inbox</a>
+              <a href="inbox.php" class="buttonxl">Manage Messaging</a>
             </div>
             <div class="col-50">
-              <a href="news.php" class="buttonxl">News and Announcements</a>
+              <a href="news.php" class="buttonxl">Manage News and Announcements</a>
+            </div>
+        </div>
+        <div class = "row">
+            <div class="col-50">
+              <a href="bookings.php" class="buttonxl">Manage Bookings</a>
+            </div>
+            <div class="col-50">
+              <a href="dues.php" class="buttonxl">Manage Dues</a>
             </div>
         </div>
 
