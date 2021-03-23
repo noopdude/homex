@@ -23,8 +23,12 @@
             $email = mysqli_real_escape_string($db, $_POST['email']);
             $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
             $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
-            $home_name = mysqli_real_escape_string($db, $_POST['home_name']);
-
+            if(isset($_POST['home_name']) ){
+              $home_name = mysqli_real_escape_string($db, $_POST['home_name']);
+            }
+            else {
+              $home_name = NULL;
+            }
             //form validation
 
             if(empty($username)) {array_push($errors, "Username is required");}

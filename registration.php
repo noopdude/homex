@@ -73,6 +73,7 @@
                           $result = mysqli_query($db,$sql);
 
                           echo "<select name='home_name'>";
+                          echo "<option disabled selected value> -- select an option -- </option>";
                           while ($row = mysqli_fetch_array($result)) {
                               echo "<option value='" . $row['home_name'] . "'>" . $row['home_name'] . "</option>";
                           }
@@ -101,6 +102,6 @@
         </div>
         <div class="footer">
           <p>Home-X Beta Version | Engineered by LIAN | Powered by AWS</p>
-        </div>        
+        </div>
     </body>
 </html>
