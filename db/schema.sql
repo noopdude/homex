@@ -18,16 +18,36 @@ CREATE SCHEMA IF NOT EXISTS `homex` DEFAULT CHARACTER SET utf8 ;
 USE `homex` ;
 
 -- -----------------------------------------------------
--- Table `homex`.`user`
+-- Table `homex`.`homes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `homex`.`user` (
+CREATE TABLE IF NOT EXISTS `homex`.`homes` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(255) NULL DEFAULT NULL,
-  `password` VARCHAR(255) NULL DEFAULT NULL,
-  `email` VARCHAR(255) NULL DEFAULT NULL,
+  `home_name` VARCHAR(45) NULL DEFAULT NULL,
+  `home_type` VARCHAR(45) NULL DEFAULT NULL,
+  `status` VARCHAR(45) NULL DEFAULT NULL,
+  `home_owner_username` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 12
+AUTO_INCREMENT = 9
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `homex`.`payment_ack`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `homex`.`payment_ack` (
+  `payment_ack_id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NULL DEFAULT NULL,
+  `payment_type` VARCHAR(45) NULL DEFAULT NULL,
+  `payment_amount` VARCHAR(45) NULL DEFAULT NULL,
+  `remarks` VARCHAR(1000) NULL DEFAULT NULL,
+  `payment_dt` DATE NULL DEFAULT NULL,
+  `created_dt` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` VARCHAR(45) NULL DEFAULT NULL,
+  `ack_username` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`payment_ack_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -44,7 +64,22 @@ CREATE TABLE IF NOT EXISTS `homex`.`service_request` (
   `username` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`sr_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 39
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `homex`.`user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `homex`.`user` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(255) NULL DEFAULT NULL,
+  `password` VARCHAR(255) NULL DEFAULT NULL,
+  `email` VARCHAR(255) NULL DEFAULT NULL,
+  `admin_flag` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 20
 DEFAULT CHARACTER SET = utf8;
 
 

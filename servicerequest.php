@@ -69,12 +69,12 @@
                 <!--input type="text" name="ISSUE_DESCRIPTION" maxlength="1000" size="60" /-->
 
 
-                <input type="submit" class="button" name="submit_sr" value="Submit" onclick="AddIssue()" />
+                <input type="submit" class="button" name="submit_sr" value="Submit" />
 
                 </form>
               </div>
               <div class="footer">
-                <p>Home-X Beta Version. Powered by AWS</p>
+                <p>Home-X Beta Version | Engineered by LIAN | Powered by AWS</p>
               </div>
                 <?php
                     if(isset($_POST['submit_sr'])){

@@ -39,15 +39,7 @@
                     </div>
                     <br>
                     <div class="row">
-                      <div class="col-20">
-                        <p>Not a user?</p>
-                      </div>
-                      <div class="col-40">
-                        <a href="registration.php" class="button">Register Here</a>
-                      </div>
-                      <div class="col-40">
-                        <button type="submit" class="button" name="login_user"> Log In </button>
-                      </div>
+                        <button type="submit" style="float: right" class="button" name="login_user"> Log In </button>
                     </div>
 
 
@@ -61,7 +53,7 @@
 
         <?php endif  ?>
         <div class="footer">
-          <p>Home-X Beta Version. Powered by AWS</p>
+          <p>Home-X Beta Version | Engineered by LIAN | Powered by AWS</p>
         </div>
     </body>
 </html>
