@@ -52,7 +52,7 @@
                       <label for="home_name">Home Name:  </label>
                     </div>
                     <div class="col-75">
-                      <input type="text" name="home_name" maxlength="45" size="30" />
+                      <input type="text" name="home_name" maxlength="45" size="30" required>
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@
                       <label for="home_type">Home Type:  </label>
                     </div>
                     <div class="col-75">
-                        <select name="home_type" id="home_type">
+                        <select name="home_type" id="home_type" required>
                         <option value="flat">Flat</option>
                         <option value="villa">Villa</option>
                         </select>
@@ -72,7 +72,7 @@
                       <label for="status">Status:  </label>
                     </div>
                     <div class="col-75">
-                        <select name="status" id="status">
+                        <select name="status" id="status" required>
                         <option value="occupied">Occupied</option>
                         <option value="vaccant">Vaccant</option>
                         </select>
@@ -93,7 +93,8 @@
                       mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                       $result = mysqli_query($db,$sql);
 
-                      echo "<select name='home_owner_username'>";
+                      echo "<select name='home_owner_username' required>";
+                      echo "<option disabled selected value> -- select an option -- </option>";
                       while ($row = mysqli_fetch_array($result)) {
                           echo "<option value='" . $row['username'] . "'>" . $row['username'] . "</option>";
                       }
