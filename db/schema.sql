@@ -65,6 +65,14 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8;
 
+CREATE TABLE `homex`.`homes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `home_name` VARCHAR(45) NULL,
+  `home_type` VARCHAR(45) NULL,
+  `status` VARCHAR(45) NULL,
+  `home_owner_username` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

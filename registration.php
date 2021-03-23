@@ -3,18 +3,18 @@
 <!doctype html>
 <html>
     <head>
-        <title>Registration | Home-X</title>
+        <title>User Account Management | Home-X</title>
     </head>
     <body>
         <link rel="stylesheet" href="./css/styles.css">
         <div class="container">
-
-            <?php if(!(isset($_SESSION['username']))) :  ?>
+            <a href="index.php"><img src="/img/logo.JPG" alt="logo" style="width:20%"></a>
+            <?php if(isset($_SESSION['admin_flag']) ) :  ?>
 
                 <form action="registration.php" method="post">
-                  <img src="/img/logo.JPG" alt="logo" style="width:20%">
+
                   <div class="header">
-                      <h1>Home-X Building Management Portal | Sign Up</h1>
+                      <h1>Home-X Building Management Portal | Create User Account</h1>
                   </div>
 
                     <?php include('errors.php') ?>
@@ -57,11 +57,35 @@
                           <input type="password" class="textfield" name="password_2" required>
                         </div>
                     </div>
+                    <div class = "row">
+                      <div class="col-25">
+                        <label for="apartmentno">Apartment/House No:  </label>
+                      </div>
+                      <div class="col-25">
+
+                        <?php
+
+                          $db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD);;
+                          //mysql_select_db('homex');
+
+                          $sql = "SELECT home_name FROM homex.homes order by home_name asc";
+                          mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+                          $result = mysqli_query($db,$sql);
+
+                          echo "<select name='home_name'>";
+                          while ($row = mysqli_fetch_array($result)) {
+                              echo "<option value='" . $row['home_name'] . "'>" . $row['home_name'] . "</option>";
+                          }
+                          echo "</select>";
+
+                          ?>
+                      </div>
+                    </div>
+
 
                     <br>
                     <button type="submit" class="button" name="reg_user"> Submit </button>
 
-                    <p>Already a user? <a href="login.php"><b>Log in</b></a> </p>
 
                 </form>
 
@@ -77,6 +101,6 @@
         </div>
         <div class="footer">
           <p>Home-X Beta Version | Engineered by LIAN | Powered by AWS</p>
-        </div>
+        </div>        
     </body>
 </html>

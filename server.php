@@ -23,6 +23,7 @@
             $email = mysqli_real_escape_string($db, $_POST['email']);
             $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
             $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
+            $home_name = mysqli_real_escape_string($db, $_POST['home_name']);
 
             //form validation
 
@@ -52,10 +53,12 @@
                   $password = md5($password_1); // encrpt the password
                   $query = "INSERT INTO homex.user (username,email,password) VALUES ('$username', '$email', '$password') ";
                   mysqli_query($db, $query);
-                  $_SESSION['username'] = $username;
-                  $_SESSION['success'] = "You are now logged in";
+                  $query = "UPDATE homex.homes set home_owner_username = '$username' where home_name = '$home_name' ";
+                  mysqli_query($db, $query);
+                  //$_SESSION['username'] = $username;
+                  $_SESSION['success'] = "User Created Successfully";
 
-                  header('location: index.php');
+                  //header('location: index.php');
             }
 
       }

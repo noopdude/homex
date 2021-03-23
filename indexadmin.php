@@ -67,26 +67,34 @@ if(isset($_GET['logout'])){
         <h1>Welcome to Home-X Administrator Dashboard, <strong><?php echo $_SESSION['username']; ?> ! </strong></h1>
         <div class = "row">
             <div class="col-50">
-              <a href="servicerequestmain.php" class="buttonxl">Manage Service Requests</a>
+              <a href="registration.php" class="buttonxl">User Accounts</a>
             </div>
             <div class="col-50">
-              <a href="paymentsmain.php" class="buttonxl">Manage Payments</a>
-            </div>
-        </div>
-        <div class = "row">
-            <div class="col-50">
-              <a href="inbox.php" class="buttonxl">Manage Messaging</a>
-            </div>
-            <div class="col-50">
-              <a href="news.php" class="buttonxl">Manage News and Announcements</a>
+              <a href="homes.php" class="buttonxl">Homes</a>
             </div>
         </div>
         <div class = "row">
             <div class="col-50">
-              <a href="bookings.php" class="buttonxl">Manage Bookings</a>
+              <a href="servicerequestmain.php" class="buttonxl">Service Requests</a>
             </div>
             <div class="col-50">
-              <a href="dues.php" class="buttonxl">Manage Dues</a>
+              <a href="paymentsmain.php" class="buttonxl">Payments</a>
+            </div>
+        </div>
+        <div class = "row">
+            <div class="col-50">
+              <a href="inbox.php" class="buttonxl">Messaging</a>
+            </div>
+            <div class="col-50">
+              <a href="news.php" class="buttonxl">News and Announcements</a>
+            </div>
+        </div>
+        <div class = "row">
+            <div class="col-50">
+              <a href="bookings.php" class="buttonxl">Amenities Bookings</a>
+            </div>
+            <div class="col-50">
+              <a href="dues.php" class="buttonxl">Dues</a>
             </div>
         </div>
 
