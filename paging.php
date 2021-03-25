@@ -48,7 +48,7 @@
 
               //echo $row["summary"];
 
-              echo "<tr><td>" . $row["summary"] . "</td><td>" .$row["created_dt"] . "</td><td>" .$row["status"] . "</td><td>" .$row["username"] . "</td><input type=\"checkbox\" class=\"chk\" value=\"yes\">. <td> </tr>" ;
+              echo "<tr><td>" . $row["summary"] . "</td><td>" .$row["created_dt"] . "</td><td>" .$row["status"] . "</td><td>" .$row["username"] . "</td><td><input type=\"checkbox\" class=\"chk\" value=\"yes\">". "</td> </tr>" ;
             }
             echo "</table>";
 
