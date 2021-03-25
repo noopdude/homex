@@ -70,7 +70,7 @@ if(isset($_GET['logout'])){
               <a href="registration.php" class="buttonxl">User Accounts</a>
             </div>
             <div class="col-50">
-              <a href="homes.php" class="buttonxl">Homes</a>
+              <a href="homemain.php" class="buttonxl">Homes</a>
             </div>
         </div>
         <div class = "row">
