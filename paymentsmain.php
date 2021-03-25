@@ -53,7 +53,7 @@
                   </select>
                   <input type="submit" class="button" name="status_select" value="Search" onclick="setstatus()" >
               </form>
-              <a href="paymentrequest.php" class="buttonxl">Place a New Payment Request</a>
+              <a href="payments.php" class="buttonxl">Place a New Payment Request</a>
               <form class="" id="form" action="paymentsmain.php" method="POST">
                     <?php
                       if(isset($_POST['status_select']) OR isset($_SESSION['pr_statusvalue'])){
@@ -108,7 +108,7 @@
                           echo "<th>Created By</th>";
                           echo "<th>Remarks</th>";
                           echo "<th>Select</th>";
-                          while($row = mysqli_fetch_array($res_data)){                           
+                          while($row = mysqli_fetch_array($res_data)){
 
 
                               echo    "
