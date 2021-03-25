@@ -82,7 +82,7 @@
                               die();
                           }
 
-                          if(isset($_SESSION['admin_flag'])) {
+                          if($_SESSION['admin_flag']==1) {
                               $total_pages_sql = "SELECT COUNT(*) FROM homex.payment_ack WHERE status = '$status'" ;
                           }
                           else{
@@ -91,7 +91,7 @@
                           $result = mysqli_query($db,$total_pages_sql);
                           $total_rows = mysqli_fetch_array($result)[0];
                           $total_pages = ceil($total_rows / $no_of_records_per_page);
-                          if(isset($_SESSION['admin_flag'])) {
+                          if($_SESSION['admin_flag']==1) {
                               $sql = "SELECT * FROM homex.payment_ack WHERE status = '$status' ORDER BY created_dt DESC LIMIT $offset, $no_of_records_per_page ";
                           }
                           else{

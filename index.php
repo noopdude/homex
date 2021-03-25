@@ -4,7 +4,7 @@ session_start();
 
 if(isset($_SESSION['username'])){
 
-  if(isset($_SESSION['admin_flag']) ){
+  if($_SESSION['admin_flag']==1 ){
 
     header("location:indexadmin.php");
 
@@ -88,7 +88,7 @@ if(isset($_GET['logout'])){
         </div>
         <div class = "row">
             <div class="col-50">
-              <a href="homemain.php" class="buttonxl">Homes</a>
+              <a href="homemain.php" class="buttonxl">My Homes</a>
             </div>
             <div class="col-50">
               <a href="bookings.php" class="buttonxl">Bookings</a>

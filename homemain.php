@@ -46,7 +46,7 @@
               </div>
               <h1>Home-X | Manage Homes | Logged in : <strong><?php echo $_SESSION['username']; ?> </strong> </h1>
               <h2>My Homes</h2>
-              <?php if(isset($_SESSION['admin_flag'])) :  ?>
+              <?php if($_SESSION['admin_flag'] ==1) :  ?>
                   <a href="homes.php" class="buttonxl">Create a new Home</a>
               <?php endif  ?>
               <form class="" name="homeform" id="form" action="homemain.php" method="POST">
@@ -69,7 +69,7 @@
                               die();
                           }
 
-                          if(isset($_SESSION['admin_flag'])) {
+                          if($_SESSION['admin_flag']==1) {
                               $total_pages_sql = "SELECT COUNT(*) FROM homex.homes" ;
                           }
                           else{
@@ -78,7 +78,7 @@
                           $result = mysqli_query($db,$total_pages_sql);
                           $total_rows = mysqli_fetch_array($result)[0];
                           $total_pages = ceil($total_rows / $no_of_records_per_page);
-                          if(isset($_SESSION['admin_flag'])) {
+                          if($_SESSION['admin_flag']==1) {
                               $sql = "SELECT * FROM homex.homes ORDER BY home_name ASC LIMIT $offset, $no_of_records_per_page ";
                           }
                           else{
@@ -94,18 +94,45 @@
                           echo "<th>Maintenance Dues</th>";
                           echo "<th>Other Dues</th>";
                           while($row = mysqli_fetch_array($res_data)){
-
+                            if($_SESSION['admin_flag']==1 ){
+                              if (isset($_GET['dues'])){
 
                               echo    "
                                            <tr>
                                                <td> <input type=\"text\" name=\"home_name[]\" value=\"" .$row['home_name']. "\"></td>
                                                <td>".$row['home_type']."</td>
-                                               <td> <input type=\"text\" name=\"home_status[]\" value=\"" .$row['status']. "\"></td>
-                                               <td> <input type=\"text\" name=\"home_owner_username[]\" value=\"" .$row['home_owner_username']. "\"></td>
+                                               <td>" .$row['status']. "</td>
+                                               <td>" .$row['home_owner_username']. "</td>
                                                <td> <input type=\"number\" name=\"maintenance_dues[]\" value=\"" .$row['maintenance_dues']. "\"></td>
                                                <td> <input type=\"number\" name=\"other_dues[]\" value=\"" .$row['other_dues']. "\"></td>
                                            </tr>
                                        ";
+                              }else {
+                                echo    "
+                                             <tr>
+                                                 <td> <input type=\"text\" name=\"home_name[]\" value=\"" .$row['home_name']. "\"></td>
+                                                 <td>".$row['home_type']."</td>
+                                                 <td> <input type=\"text\" name=\"home_status[]\" value=\"" .$row['status']. "\"></td>
+                                                 <td> <input type=\"text\" name=\"home_owner_username[]\" value=\"" .$row['home_owner_username']. "\"></td>
+                                                 <td> <input type=\"number\" name=\"maintenance_dues[]\" value=\"" .$row['maintenance_dues']. "\"></td>
+                                                 <td> <input type=\"number\" name=\"other_dues[]\" value=\"" .$row['other_dues']. "\"></td>
+                                             </tr>
+                                         ";
+                              }
+                            }
+                            else{
+                              echo    "
+                                           <tr>
+                                               <td>".$row['home_name']."</td>
+                                               <td>".$row['home_type']."</td>
+                                               <td>".$row['status']."</td>
+                                               <td>".$row['home_owner_username']."</td>
+                                               <td>".$row['maintenance_dues']."</td>
+                                               <td>".$row['other_dues']."</td>
+                                           </tr>
+                                       ";
+
+                            }
 
                           }
                           echo "</table>";
@@ -124,8 +151,9 @@
                     </li>
                     <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
                     </ul>
-
-                    <input type="submit" class="button" style="float: right; margin-top: 10px" name="update_home" value="Update" >
+                    <?php if($_SESSION['admin_flag']==1) :  ?>
+                        <input type="submit" class="button" style="float: right; margin-top: 10px" name="update_home" value="Update" >
+                    <?php endif  ?>
               </form>
           </div>
 
@@ -161,7 +189,7 @@ function UpdateHome($db, $home_name, $home_status,  $home_owner_username,$mainte
         $db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD);
         while ($i < $arrayLength)
         {
-              
+
               if (empty(trim($maintenance_dues[$i]))){$maintenance_dues[$i] = 0;}
               if (empty(trim($other_dues[$i]))){$other_dues[$i] = 0;}
               $query = "UPDATE homex.homes SET status = '$home_status[$i]', home_owner_username = '$home_owner_username[$i]' , maintenance_dues = $maintenance_dues[$i] , other_dues = $other_dues[$i] WHERE home_name = '$home_name[$i]' ";
