@@ -2,7 +2,7 @@
 
 session_start();
 
-if(isset($_SESSION['admin_flag']) ){
+if($_SESSION['admin_flag']==1 ){
 
 
 }
@@ -67,7 +67,7 @@ if(isset($_GET['logout'])){
         <h1>Welcome to Home-X Administrator Dashboard, <strong><?php echo $_SESSION['username']; ?> ! </strong></h1>
         <div class = "row">
             <div class="col-50">
-              <a href="registration.php" class="buttonxl">User Accounts</a>
+              <a href="usermain.php" class="buttonxl">User Accounts</a>
             </div>
             <div class="col-50">
               <a href="homemain.php" class="buttonxl">Homes</a>
@@ -94,7 +94,7 @@ if(isset($_GET['logout'])){
               <a href="bookings.php" class="buttonxl">Amenities Bookings</a>
             </div>
             <div class="col-50">
-              <a href="dues.php" class="buttonxl">Dues</a>
+              <a href="homemain.php?dues=yes" class="buttonxl">Dues</a>
             </div>
         </div>
 

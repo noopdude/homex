@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="./css/styles.css">
         <div class="container">
             <a href="index.php"><img src="/img/logo.JPG" alt="logo" style="width:20%"></a>
-            <?php if(isset($_SESSION['admin_flag']) ) :  ?>
+            <?php if($_SESSION['admin_flag']==1 ) :  ?>
 
                 <form action="registration.php" method="post">
 

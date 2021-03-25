@@ -3,7 +3,7 @@
 
     session_start();
 
-    if(isset($_SESSION['admin_flag'])){
+    if($_SESSION['admin_flag']==1){
 
 
 
@@ -30,7 +30,7 @@
 
         <!--if the user logs in print information about him -->
 
-        <?php if(isset($_SESSION['admin_flag']) ) :  ?>
+        <?php if($_SESSION['admin_flag']==1 ) :  ?>
             <div class="container">
               <form action="homes.php" method="POST">
                 <div class = "row">
