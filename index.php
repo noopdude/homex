@@ -86,6 +86,14 @@ if(isset($_GET['logout'])){
               <a href="news.php" class="buttonxl">News and Announcements</a>
             </div>
         </div>
+        <div class = "row">
+            <div class="col-50">
+              <a href="homemain.php" class="buttonxl">Homes</a>
+            </div>
+            <div class="col-50">
+              <a href="bookings.php" class="buttonxl">Bookings</a>
+            </div>
+        </div>
 
       </div>
       <div class="footer">
