@@ -23,6 +23,7 @@
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+          <script src="/js/homex.js"></script>
           <script type="text/javascript">
             function popup(){
               alert("page no not set");
@@ -48,7 +49,7 @@
               <?php if(isset($_SESSION['admin_flag'])) :  ?>
                   <a href="homes.php" class="buttonxl">Create a new Home</a>
               <?php endif  ?>
-              <form class="" id="form" action="homemain.php" method="POST">
+              <form class="" name="homeform" id="form" action="homemain.php" method="POST">
                     <?php
 
                           $username =  $_SESSION['username'];
@@ -85,7 +86,7 @@
                           }
                           $res_data = mysqli_query($db,$sql);
 
-                          echo "<table>";
+                          echo "<table id=\"hometable\">";
                           echo "<th>Home Name</th>";
                           echo "<th>Home Type</th>";
                           echo "<th>Status</th>";
@@ -160,7 +161,9 @@ function UpdateHome($db, $home_name, $home_status,  $home_owner_username,$mainte
         $db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD);
         while ($i < $arrayLength)
         {
-              echo $home_name[$i];
+              
+              if (empty(trim($maintenance_dues[$i]))){$maintenance_dues[$i] = 0;}
+              if (empty(trim($other_dues[$i]))){$other_dues[$i] = 0;}
               $query = "UPDATE homex.homes SET status = '$home_status[$i]', home_owner_username = '$home_owner_username[$i]' , maintenance_dues = $maintenance_dues[$i] , other_dues = $other_dues[$i] WHERE home_name = '$home_name[$i]' ";
               mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
               if(!mysqli_query($db, $query)) {
