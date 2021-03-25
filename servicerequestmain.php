@@ -56,18 +56,21 @@
               <a href="servicerequest.php" class="buttonxl">Place a New Service Request</a>
               <form class="" id="form" action="servicerequestmain.php" method="POST">
                     <?php
-                          if(isset($_POST['status_select']) OR isset($_SESSION['statusvalue'])){
+                      if(isset($_POST['status_select']) OR isset($_SESSION['statusvalue'])){
 
-                              if (!isset($_POST['status_select'])){
-                                    $status = $_SESSION['statusvalue'];
-                              }else{
-                                    $status = htmlentities($_POST['status']);
-                                    $_SESSION['statusvalue'] = htmlentities($_POST['status']);
-                              }
-                        if (isset($_GET['pageno'])) {
-                                $pageno = $_GET['pageno'];
+                          if (!isset($_POST['status_select'])){
+                                $status = $_SESSION['statusvalue'];
+                          }else{
+                                $status = htmlentities($_POST['status']);
+                                $_SESSION['statusvalue'] = htmlentities($_POST['status']);
+                          }
+
+                          $username =  $_SESSION['username'];
+                          
+                          if (isset($_GET['pageno'])) {
+                              $pageno = $_GET['pageno'];
                           } else {
-                                $pageno = 1;
+                              $pageno = 1;
                           }
                           $no_of_records_per_page = 10;
                           $offset = ($pageno-1) * $no_of_records_per_page;
@@ -75,19 +78,24 @@
                           $db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD);
                           // Check dbection
                           if (mysqli_connect_errno()){
-                          echo "Failed to dbect to MySQL: " . mysqli_dbect_error();
-                          die();
+                              echo "Failed to dbect to MySQL: " . mysqli_dbect_error();
+                              die();
                           }
 
-                          $total_pages_sql = "SELECT COUNT(*) FROM homex.service_request";
+                          if(isset($_SESSION['admin_flag'])) {
+                              $total_pages_sql = "SELECT COUNT(*) FROM homex.service_request WHERE status = '$status'" ;
+                          }
+                          else{
+                              $total_pages_sql = "SELECT COUNT(*) FROM homex.service_request WHERE status = '$status' and username =  '$username'";
+                          }
                           $result = mysqli_query($db,$total_pages_sql);
                           $total_rows = mysqli_fetch_array($result)[0];
                           $total_pages = ceil($total_rows / $no_of_records_per_page);
                           if(isset($_SESSION['admin_flag'])) {
-                          $sql = "SELECT * FROM homex.service_request WHERE status = '$status' ORDER BY created_dt DESC LIMIT $offset, $no_of_records_per_page ";
+                              $sql = "SELECT * FROM homex.service_request WHERE status = '$status' ORDER BY created_dt DESC LIMIT $offset, $no_of_records_per_page ";
                           }
                           else{
-                          $sql = "SELECT * FROM homex.service_request WHERE status = '$status' AND username= '$username' ORDER BY created_dt DESC LIMIT $offset, $no_of_records_per_page ";
+                              $sql = "SELECT * FROM homex.service_request WHERE status = '$status' AND username= '$username' ORDER BY created_dt DESC LIMIT $offset, $no_of_records_per_page ";
                           }
                           $res_data = mysqli_query($db,$sql);
 
@@ -103,7 +111,7 @@
                           }
                           echo "</table>";
                           mysqli_close($db);
-                    }
+                        }
                     ?>
                     <ul class="pagination">
 
@@ -127,7 +135,7 @@
                             <textarea id="desc" name="remarks" placeholder="Please provide closure comments.." style="height:200px"></textarea>
                           </div>
                       </div>
-                        <input type="submit" class="button" style="margin: 10px" name="close_sr" value="Close" >
+                        <input type="submit" class="button" style="margin: 10px" name="close_sr" value="Close the Request/s" >
                     <?php else : ?>
                       <div class = "row" id="remarksdiv" style="display:none" >
                           <div class="col-25">
@@ -137,7 +145,7 @@
                             <textarea id="desc" name="remarks" placeholder="Please provide reopen comments.." style="height:200px"></textarea>
                           </div>
                       </div>
-                        <input type="submit" class="button" name="reopen_sr" value="Re-Open" >
+                        <input type="submit" class="button" name="reopen_sr" value="Re-Open the Request/s" >
                     <?php endif ?>
               </form>
           </div>
