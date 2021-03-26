@@ -87,7 +87,7 @@
                   $password = md5($password);
                   mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-                  $query = "SELECT * FROM homex.user WHERE username = '$username' AND password = '$password'";
+                  $query = "SELECT * FROM homex.user WHERE username = '$username' AND password = '$password' and status='Active'";
                   $results = mysqli_query($db, $query);
 
                   if(mysqli_num_rows($results)){
@@ -98,7 +98,7 @@
                           $admin_flag = $row["admin_flag"];
                           break;
                       }
-                      echo "Admin flag is $admin_flag";
+                      //echo "Admin flag is $admin_flag";
                       $_SESSION['admin_flag'] = $admin_flag;
                       if($admin_flag == '1'){
                           $_SESSION['success'] = 'Admin Logged in Successfully!';
