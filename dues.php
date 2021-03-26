@@ -50,7 +50,7 @@
               <?php if($_SESSION['admin_flag'] ==1) :  ?>
                   <a href="homes.php" class="buttonxl">Create a new Home</a>
               <?php endif  ?>
-              <form class="" name="homeform" id="form" action="homemain.php" method="POST">
+              <form class="" name="homeform" id="form" action="dues.php" method="POST">
                     <?php
 
                           $username =  $_SESSION['username'];
@@ -97,16 +97,16 @@
                           while($row = mysqli_fetch_array($res_data)){
                             if($_SESSION['admin_flag']==1 ){
 
-                                echo    "
-                                             <tr>
-                                                 <td> <input type=\"text\" name=\"home_name[]\" value=\"" .$row['home_name']. "\"></td>
-                                                 <td>".$row['home_type']."</td>
-                                                 <td> <input type=\"text\" name=\"home_status[]\" value=\"" .$row['status']. "\"></td>
-                                                 <td> <input type=\"text\" name=\"home_owner_username[]\" value=\"" .$row['home_owner_username']. "\"></td>
-                                                 <td> <input type=\"number\" name=\"maintenance_dues[]\" value=\"" .$row['maintenance_dues']. "\"></td>
-                                                 <td> <input type=\"number\" name=\"other_dues[]\" value=\"" .$row['other_dues']. "\"></td>
-                                             </tr>
-                                         ";
+                              echo    "
+                                           <tr>
+                                               <td> <input type=\"text\" name=\"home_name[]\" value=\"" .$row['home_name']. "\"></td>
+                                               <td>".$row['home_type']."</td>
+                                               <td>" .$row['status']. "</td>
+                                               <td>" .$row['home_owner_username']. "</td>
+                                               <td> <input type=\"number\" name=\"maintenance_dues[]\" value=\"" .$row['maintenance_dues']. "\"></td>
+                                               <td> <input type=\"number\" name=\"other_dues[]\" value=\"" .$row['other_dues']. "\"></td>
+                                           </tr>
+                                       ";
 
                             }
                             else{
@@ -141,7 +141,7 @@
                     <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
                     </ul>
                     <?php if($_SESSION['admin_flag']==1) :  ?>
-                        <input type="submit" class="button" style="float: right; margin-top: 10px" name="update_home" value="Update" >
+                        <input type="submit" class="button" style="float: right; margin-top: 10px" name="update_dues" value="Update" >
                     <?php endif  ?>
               </form>
           </div>
@@ -150,58 +150,29 @@
           <p>Home-X Beta Version | Engineered by LIAN | Powered by AWS</p>
           </div>
           <?php
-                if(isset($_POST['update_home'])){
-                          $home_name = $_POST['home_name'];
-                          $home_status = $_POST['home_status'];
-                          $home_owner_username = $_POST['home_owner_username'];
-                          $maintenance_dues = $_POST['maintenance_dues'];
-                          $other_dues = $_POST['other_dues'];
-                          $username = $_SESSION['username'];
-                          $db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD);
+                if(isset($_POST['update_dues'])){
 
-                          $arrayLength =  count($home_owner_username);
+                      $home_name = $_POST['home_name'];
+                      $maintenance_dues = $_POST['maintenance_dues'];
+                      $other_dues = $_POST['other_dues'];
+                      $username = $_SESSION['username'];
+                      $db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD);
 
-                          if ( $arrayLength > 0 ){
-                                UpdateHome($db,$home_name, $home_status, $home_owner_username, $maintenance_dues, $other_dues, $username );
-                          }
-                          echo "<script> location.replace(\"homemain.php\"); </script>";
+                      $arrayLength =  count($home_name);
+
+                      if ( $arrayLength > 0 ){
+                            UpdateDues($db,$home_name, $maintenance_dues, $other_dues, $username );
+                            //echo "hereiam";
+                            echo "<script> location.replace(\"dues.php\"); </script>";
+                      }
 
                 }
+
           ?>
       </body>
 </html>
 <?php
-function UpdateHome($db, $home_name, $home_status,  $home_owner_username,$maintenance_dues,$other_dues,$username ) {
 
-        $errors = array();
-        $i = 0;
-        $arrayLength =  count($home_status);
-        $db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD);
-        while ($i < $arrayLength)
-        {
-
-              if (empty(trim($maintenance_dues[$i]))){$maintenance_dues[$i] = 0;}
-              if (empty(trim($other_dues[$i]))){$other_dues[$i] = 0;}
-
-              $query = "UPDATE homex.homes SET status = '$home_status[$i]', home_owner_username = '$home_owner_username[$i]' , maintenance_dues = $maintenance_dues[$i] , other_dues = $other_dues[$i] WHERE home_name = '$home_name[$i]' ";
-              echo $query;
-              mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-              if(!mysqli_query($db, $query)) {
-                  array_push($errors, "Error updating Home: $home_name[$i] ");
-              }
-              else{
-                  //echo "<h3>Thank you! Selected Payment Requests have been closed</h3>";
-              }
-              $i++;
-        }
-        if (count($errors) == 0){
-              echo "<h3>Thank you! Changes have been applied</h3>";
-        }
-        else{
-              echo "Some records failed to update";
-        }
-        mysqli_close($db);
-}
 function UpdateDues($db, $home_name, $maintenance_dues,$other_dues,$username ) {
 
         $errors = array();
