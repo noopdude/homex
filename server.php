@@ -55,7 +55,7 @@
 
             if (count($errors) == 0){
                   $password = md5($password_1); // encrpt the password
-                  $query = "INSERT INTO homex.user (username,email,password) VALUES ('$username', '$email', '$password') ";
+                  $query = "INSERT INTO homex.user (username,email,password,status) VALUES ('$username', '$email', '$password', 'Active') ";
                   mysqli_query($db, $query);
                   $query = "UPDATE homex.homes set home_owner_username = '$username' where home_name = '$home_name' ";
                   mysqli_query($db, $query);
@@ -113,6 +113,6 @@
                   }
             }
       }
-      
+
 
 ?>
