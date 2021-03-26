@@ -47,12 +47,12 @@
               <h1>Home-X | Manage Users | Logged in : <strong><?php echo $_SESSION['username']; ?> </strong> </h1>
               <h2>My Homes</h2>
               <form class="statusform" action="usermain.php" method="POST">
-                  <label for="status">Status</label>
+                  <label for="status">Please Choose Status</label>
                   <select name="status" id="user_statusvalue">
                   <option value="Active">Active</option>
                   <option value="Inactive">Inactive</option>
                   </select>
-                  <input type="submit" class="button" name="user_status_select" value="Search" onclick="setstatus()" >
+                  <input type="submit" class="button" name="user_status_select" style="margin: 10px" value="Search" onclick="setstatus()" >
               </form>
               <?php if($_SESSION['admin_flag']==1) :  ?>
                   <a href="registration.php" class="buttonxl">Create a new User</a>

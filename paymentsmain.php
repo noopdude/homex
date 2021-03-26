@@ -46,12 +46,12 @@
               <h1>Home-X | Manage Payment Requests | Logged in : <strong><?php echo $_SESSION['username']; ?> </strong> </h1>
               <h2>My Payment Requests</h2>
               <form class="statusform" action="paymentsmain.php" method="POST">
-                  <label for="status">Status</label>
+                  <label for="status">Please Choose Status</label>
                   <select name="status" id="pr_statusvalue">
                   <option value="open">Open</option>
                   <option value="closed">Closed</option>
                   </select>
-                  <input type="submit" class="button" name="status_select" value="Search" onclick="setstatus()" >
+                  <input type="submit" class="button" name="status_select" style="margin: 10px" value="Search" onclick="setstatus()" >
               </form>
               <a href="payments.php" class="buttonxl">Place a New Payment Request</a>
               <form class="" id="form" action="paymentsmain.php" method="POST">
@@ -151,7 +151,7 @@
                             <textarea id="desc" name="remarks" placeholder="Please provide closure comments.." style="height:200px"></textarea>
                           </div>
                       </div>
-                        <input type="submit" class="button" style="margin: 10px" name="close_pr" value="Close the Request/s" >
+                        <input type="submit" class="button" style="margin: 10px; float: right" name="close_pr" value="Close the Request/s" >
                     <?php else : ?>
                       <div class = "row" id="remarksdiv" style="display:none" >
                           <div class="col-25">
@@ -161,7 +161,7 @@
                             <textarea id="desc" name="remarks" placeholder="Please provide reopen comments.." style="height:200px"></textarea>
                           </div>
                       </div>
-                        <input type="submit" class="button" name="reopen_pr" value="Re-Open the Request/s" >
+                        <input type="submit" class="button" name="reopen_pr" style="margin: 10px; float: right"1 value="Re-Open the Request/s" >
                     <?php endif ?>
               </form>
           </div>
