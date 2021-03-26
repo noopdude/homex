@@ -107,7 +107,17 @@
                           echo "<th>Remarks</th>";
                           echo "<th>Select</th>";
                           while($row = mysqli_fetch_array($res_data)){
-                              echo "<tr><td>" . $row["summary"] . "</td><td>" .$row["created_dt"] . "</td><td>" .$row["status"] . "</td><td>" .$row["username"] . "</td><td>" .$row["remarks"] . "</td><td><input type=\"checkbox\" name=\"srlist[]\" value=\"" .$row["sr_id"] . "\"></td> </tr>" ;
+                              echo "
+                                    <tr>
+                                        <td> <a href=\"servicerequestview.php?id=".$row["sr_id"]."\"><b>" .$row["summary"] ."</b></a> </td>
+                                        <td>" .$row["created_dt"] . "</td>
+                                        <td>" .$row["status"] . "</td>
+                                        <td>" .$row["username"] . "</td>
+                                        <td>" .$row["remarks"] . "</td>
+                                        <td><input type=\"checkbox\" name=\"srlist[]\" value=\"" .$row["sr_id"] . "\"></td>
+                                    </tr>
+
+                                    " ;
                           }
                           echo "</table>";
                           mysqli_close($db);
