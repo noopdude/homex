@@ -153,6 +153,7 @@
                       if ( $arrayLength > 0 ){
                             UpdateUser($db,$usernamelist, $status, $email, $admin_flag_list, $username );
                       }
+                      echo "<script> location.replace(\"usermain.php\"); </script>";
                 }
 
           ?>
