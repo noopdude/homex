@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class = "row">
+        <div class="col-25">
+          <label for="summary">Summary:  </label>
+        </div>
+        <div class="col-75">
+          <input type="text" value="$row['summary']" name="SUMMARY" maxlength="45" size="30" />
+        </div>
+    </div>
+
+    <div class = "row">
+        <div class="col-25">
+          <label for="issue_description">Description:  </label>
+        </div>
+        <div class="col-75">
+          <textarea id="desc" value="$row['summary']" name="issue_description"  style="height:200px"></textarea>
+        </div>
+    </div>
+    <div class = "row">
+        <div class="col-25">
+          <label for="created_date">Created Date:  </label>
+        </div>
+        <div class="col-75">
+          <p>$row['created_dt']</p>
+        </div>
+    </div>
+    <div class = "row">
+        <div class="col-25">
+          <label for="status">Status:  </label>
+        </div>
+        <div class="col-75">
+          <p>$row['status']</p>
+        </div>
+    </div>
+    <div class = "row">
+        <div class="col-25">
+          <label for="remarks">Remarks:  </label>
+        </div>
+        <div class="col-75">
+          <p>$row['remarks']</p>
+        </div>
+    </div>
+
+    </div>
+  </body>
+</html>
