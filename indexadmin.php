@@ -94,7 +94,7 @@ if(isset($_GET['logout'])){
               <a href="bookings.php" class="buttonxl">Amenities Bookings</a>
             </div>
             <div class="col-50">
-              <a href="homemain.php?dues=yes" class="buttonxl">Dues</a>
+              <a href="dues.php" class="buttonxl">Dues</a>
             </div>
         </div>
 

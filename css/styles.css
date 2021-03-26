@@ -35,8 +35,11 @@ form {
 }
 a:hover{
   color: yellow;
+  transform: scale(1.2);
+  /*box-shadow: 10px 10px 10px #0ff;*/
 
 }
+
 .textfield{
 
   height: 30px;

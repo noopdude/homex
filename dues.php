@@ -2,12 +2,13 @@
 
 <?php
       session_start();
-      //$_SESSION['user_statusvalue'] = "open";
+      //$_SESSION['pr_statusvalue'] = "open";
       if (!isset($_GET['pageno'])){
         //echo '<script type="text/javascript">','popup();', '</script>'  ;
-        //unset($_SESSION['user_statusvalue']);
+        //unset($_SESSION['pr_statusvalue']);
       }
-      if(isset($_SESSION['username']) AND $_SESSION['admin_flag'] == 1) {
+
+      if(isset($_SESSION['username'])){
 
       }
       else{
@@ -18,7 +19,7 @@
 <!doctype html>
 <html>
     <head>
-          <title>User Account Management | Home-X</title>
+          <title>Payment Requests | Home-X</title>
           <link rel="stylesheet" href="./css/styles.css">
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -29,8 +30,8 @@
               alert("page no not set");
             }
             function setstatus(){
-                var status = document.getElementById("user_statusvalue");
-                $_SESSION['user_statusvalue'] = status.value;
+                var status = document.getElementById("pr_statusvalue");
+                $_SESSION['pr_statusvalue'] = status.value;
             }
           </script>
     </head>
@@ -44,29 +45,14 @@
                       <a href="index.php?logout='1'" class="button">Log Out</a>
                   </div>
               </div>
-              <h1>Home-X | Manage Users | Logged in : <strong><?php echo $_SESSION['username']; ?> </strong> </h1>
+              <h1>Home-X | Manage Homes | Logged in : <strong><?php echo $_SESSION['username']; ?> </strong> </h1>
               <h2>My Homes</h2>
-              <form class="statusform" action="usermain.php" method="POST">
-                  <label for="status">Please Choose Status</label>
-                  <select name="status" id="user_statusvalue">
-                  <option value="Active">Active</option>
-                  <option value="Inactive">Inactive</option>
-                  </select>
-                  <input type="submit" class="button" name="user_status_select" style="margin: 10px" value="Search" onclick="setstatus()" >
-              </form>
-              <?php if($_SESSION['admin_flag']==1) :  ?>
-                  <a href="registration.php" class="buttonxl">Create a new User</a>
+              <?php if($_SESSION['admin_flag'] ==1) :  ?>
+                  <a href="homes.php" class="buttonxl">Create a new Home</a>
               <?php endif  ?>
-              <form class="" name="userform" id="form" action="usermain.php" method="POST">
+              <form class="" name="homeform" id="form" action="dues.php" method="POST">
                     <?php
-                      if(isset($_POST['user_status_select']) OR isset($_SESSION['user_statusvalue'])){
 
-                        if (!isset($_POST['user_status_select'])){
-                              $status = $_SESSION['user_statusvalue'];
-                        }else{
-                              $status = htmlentities($_POST['status']);
-                              $_SESSION['user_statusvalue'] = htmlentities($_POST['status']);
-                        }
                           $username =  $_SESSION['username'];
 
                           if (isset($_GET['pageno'])) {
@@ -84,39 +70,63 @@
                               die();
                           }
 
-                          $total_pages_sql = "SELECT COUNT(*) FROM homex.user WHERE status = '$status'" ;
-
+                          if($_SESSION['admin_flag']==1) {
+                              $total_pages_sql = "SELECT COUNT(*) FROM homex.homes" ;
+                          }
+                          else{
+                              $total_pages_sql = "SELECT COUNT(*) FROM homex.homes WHERE home_owner_username =  '$username'";
+                          }
                           $result = mysqli_query($db,$total_pages_sql);
                           $total_rows = mysqli_fetch_array($result)[0];
                           $total_pages = ceil($total_rows / $no_of_records_per_page);
-
-                          $sql = "SELECT * FROM homex.user WHERE status = '$status' ORDER BY username ASC LIMIT $offset, $no_of_records_per_page ";
-
+                          if($_SESSION['admin_flag']==1) {
+                              $sql = "SELECT * FROM homex.homes ORDER BY home_name ASC LIMIT $offset, $no_of_records_per_page ";
+                          }
+                          else{
+                              $sql = "SELECT * FROM homex.homes WHERE home_owner_username= '$username' ORDER BY home_name ASC LIMIT $offset, $no_of_records_per_page ";
+                          }
                           $res_data = mysqli_query($db,$sql);
 
-                          echo "<table id=\"usertable\">";
-                          echo "<th>User Name</th>";
-                          echo "<th>Email</th>";
-                          echo "<th>Admin Flag</th>";
+                          echo "<table id=\"hometable\">";
+                          echo "<th>Home Name</th>";
+                          echo "<th>Home Type</th>";
                           echo "<th>Status</th>";
-
-
+                          echo "<th>Home Owner</th>";
+                          echo "<th>Maintenance Dues</th>";
+                          echo "<th>Other Dues</th>";
                           while($row = mysqli_fetch_array($res_data)){
-
+                            if($_SESSION['admin_flag']==1 ){
 
                               echo    "
                                            <tr>
-                                               <td> <input type=\"text\" name=\"usernamelist[]\" value=\"" .$row['username']. "\"></td>
-                                               <td> <input type=\"text\" name=\"email[]\" value=\"" .$row['email']. "\"></td>
-                                               <td> <input type=\"number\" name=\"admin_flag[]\" value=\"" .$row['admin_flag']. "\"></td>
-                                               <td> <input type=\"text\" name=\"status[]\" value=\"" .$row['status']. "\"></td>
+                                               <td> <input type=\"text\" name=\"home_name[]\" value=\"" .$row['home_name']. "\"></td>
+                                               <td>".$row['home_type']."</td>
+                                               <td>" .$row['status']. "</td>
+                                               <td>" .$row['home_owner_username']. "</td>
+                                               <td> <input type=\"number\" name=\"maintenance_dues[]\" value=\"" .$row['maintenance_dues']. "\"></td>
+                                               <td> <input type=\"number\" name=\"other_dues[]\" value=\"" .$row['other_dues']. "\"></td>
                                            </tr>
                                        ";
+
+                            }
+                            else{
+                              echo    "
+                                           <tr>
+                                               <td>".$row['home_name']."</td>
+                                               <td>".$row['home_type']."</td>
+                                               <td>".$row['status']."</td>
+                                               <td>".$row['home_owner_username']."</td>
+                                               <td>".$row['maintenance_dues']."</td>
+                                               <td>".$row['other_dues']."</td>
+                                           </tr>
+                                       ";
+
+                            }
 
                           }
                           echo "</table>";
                           mysqli_close($db);
-                        }
+
                     ?>
 
                     <ul class="pagination">
@@ -130,8 +140,9 @@
                     </li>
                     <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
                     </ul>
-
-                    <input type="submit" class="button" style="float: right; margin-top: 10px" name="update_user" value="Update" >
+                    <?php if($_SESSION['admin_flag']==1) :  ?>
+                        <input type="submit" class="button" style="float: right; margin-top: 10px" name="update_dues" value="Update" >
+                    <?php endif  ?>
               </form>
           </div>
 
@@ -139,42 +150,46 @@
           <p>Home-X Beta Version | Engineered by LIAN | Powered by AWS</p>
           </div>
           <?php
-                if(isset($_POST['update_user'])){
-                      $usernamelist = $_POST['usernamelist'];
-                      $status = $_POST['status'];
-                      $email = $_POST['email'];
-                      $admin_flag_list = $_POST['admin_flag'];
+                if(isset($_POST['update_dues'])){
 
+                      $home_name = $_POST['home_name'];
+                      $maintenance_dues = $_POST['maintenance_dues'];
+                      $other_dues = $_POST['other_dues'];
                       $username = $_SESSION['username'];
                       $db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD);
 
-                      $arrayLength =  count($email);
+                      $arrayLength =  count($home_name);
 
                       if ( $arrayLength > 0 ){
-                            UpdateUser($db,$usernamelist, $status, $email, $admin_flag_list, $username );
+                            UpdateDues($db,$home_name, $maintenance_dues, $other_dues, $username );
+                            //echo "hereiam";
+                            echo "<script> location.replace(\"dues.php\"); </script>";
                       }
+
                 }
 
           ?>
       </body>
 </html>
 <?php
-function UpdateUser($db,$usernamelist, $status, $email, $admin_flag_list, $username ) {
+
+function UpdateDues($db, $home_name, $maintenance_dues,$other_dues,$username ) {
 
         $errors = array();
         $i = 0;
-        $arrayLength =  count($status);
+        $arrayLength =  count($home_name);
         $db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD);
         while ($i < $arrayLength)
         {
-            //echo $usernamelist[$i];
-              if (empty(trim($admin_flag_list[$i]))){$admin_flag_list[$i] = 0;}
 
-              $query = "UPDATE homex.user SET status = '$status[$i]', email = '$email[$i]' ,admin_flag = $admin_flag_list[$i] WHERE username = '$usernamelist[$i]' ";
+              if (empty(trim($maintenance_dues[$i]))){$maintenance_dues[$i] = 0;}
+              if (empty(trim($other_dues[$i]))){$other_dues[$i] = 0;}
+
+              $query = "UPDATE homex.homes SET  maintenance_dues = $maintenance_dues[$i] , other_dues = $other_dues[$i] WHERE home_name = '$home_name[$i]' ";
               //echo $query;
               mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
               if(!mysqli_query($db, $query)) {
-                  array_push($errors, "Error updating user: $username[$i] ");
+                  array_push($errors, "Error updating Home: $home_name[$i] ");
               }
               else{
                   //echo "<h3>Thank you! Selected Payment Requests have been closed</h3>";

@@ -7,6 +7,7 @@
         //echo '<script type="text/javascript">','popup();', '</script>'  ;
         //unset($_SESSION['pr_statusvalue']);
       }
+
       if(isset($_SESSION['username'])){
 
       }
@@ -95,19 +96,7 @@
                           echo "<th>Other Dues</th>";
                           while($row = mysqli_fetch_array($res_data)){
                             if($_SESSION['admin_flag']==1 ){
-                              if (isset($_GET['dues'])){
 
-                              echo    "
-                                           <tr>
-                                               <td> <input type=\"text\" name=\"home_name[]\" value=\"" .$row['home_name']. "\"></td>
-                                               <td>".$row['home_type']."</td>
-                                               <td>" .$row['status']. "</td>
-                                               <td>" .$row['home_owner_username']. "</td>
-                                               <td> <input type=\"number\" name=\"maintenance_dues[]\" value=\"" .$row['maintenance_dues']. "\"></td>
-                                               <td> <input type=\"number\" name=\"other_dues[]\" value=\"" .$row['other_dues']. "\"></td>
-                                           </tr>
-                                       ";
-                              }else {
                                 echo    "
                                              <tr>
                                                  <td> <input type=\"text\" name=\"home_name[]\" value=\"" .$row['home_name']. "\"></td>
@@ -118,7 +107,7 @@
                                                  <td> <input type=\"number\" name=\"other_dues[]\" value=\"" .$row['other_dues']. "\"></td>
                                              </tr>
                                          ";
-                              }
+
                             }
                             else{
                               echo    "
@@ -162,21 +151,22 @@
           </div>
           <?php
                 if(isset($_POST['update_home'])){
-                      $home_name = $_POST['home_name'];
-                      $home_status = $_POST['home_status'];
-                      $home_owner_username = $_POST['home_owner_username'];
-                      $maintenance_dues = $_POST['maintenance_dues'];
-                      $other_dues = $_POST['other_dues'];
-                      $username = $_SESSION['username'];
-                      $db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD);
+                          $home_name = $_POST['home_name'];
+                          $home_status = $_POST['home_status'];
+                          $home_owner_username = $_POST['home_owner_username'];
+                          $maintenance_dues = $_POST['maintenance_dues'];
+                          $other_dues = $_POST['other_dues'];
+                          $username = $_SESSION['username'];
+                          $db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD);
 
-                      $arrayLength =  count($home_owner_username);
+                          $arrayLength =  count($home_owner_username);
 
-                      if ( $arrayLength > 0 ){
-                            UpdateHome($db,$home_name, $home_status, $home_owner_username, $maintenance_dues, $other_dues, $username );
-                      }
+                          if ( $arrayLength > 0 ){
+                                UpdateHome($db,$home_name, $home_status, $home_owner_username, $maintenance_dues, $other_dues, $username );
+                          }
+                          echo "<script> location.replace(\"homemain.php\"); </script>";
+
                 }
-
           ?>
       </body>
 </html>
@@ -192,7 +182,40 @@ function UpdateHome($db, $home_name, $home_status,  $home_owner_username,$mainte
 
               if (empty(trim($maintenance_dues[$i]))){$maintenance_dues[$i] = 0;}
               if (empty(trim($other_dues[$i]))){$other_dues[$i] = 0;}
+
               $query = "UPDATE homex.homes SET status = '$home_status[$i]', home_owner_username = '$home_owner_username[$i]' , maintenance_dues = $maintenance_dues[$i] , other_dues = $other_dues[$i] WHERE home_name = '$home_name[$i]' ";
+              echo $query;
+              mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+              if(!mysqli_query($db, $query)) {
+                  array_push($errors, "Error updating Home: $home_name[$i] ");
+              }
+              else{
+                  //echo "<h3>Thank you! Selected Payment Requests have been closed</h3>";
+              }
+              $i++;
+        }
+        if (count($errors) == 0){
+              echo "<h3>Thank you! Changes have been applied</h3>";
+        }
+        else{
+              echo "Some records failed to update";
+        }
+        mysqli_close($db);
+}
+function UpdateDues($db, $home_name, $maintenance_dues,$other_dues,$username ) {
+
+        $errors = array();
+        $i = 0;
+        $arrayLength =  count($home_name);
+        $db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD);
+        while ($i < $arrayLength)
+        {
+
+              if (empty(trim($maintenance_dues[$i]))){$maintenance_dues[$i] = 0;}
+              if (empty(trim($other_dues[$i]))){$other_dues[$i] = 0;}
+
+              $query = "UPDATE homex.homes SET  maintenance_dues = $maintenance_dues[$i] , other_dues = $other_dues[$i] WHERE home_name = '$home_name[$i]' ";
+              //echo $query;
               mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
               if(!mysqli_query($db, $query)) {
                   array_push($errors, "Error updating Home: $home_name[$i] ");
