@@ -1,4 +1,4 @@
-<?php include('server.php') ?>
+<?php include('../inc/server.php') ?>
 <!doctype html>
 <html>
     <head>
@@ -10,7 +10,7 @@
             <div class="container">
 
                 <form action="login.php" method="post">
-                  <img src="/img/logo.JPG" alt="logo" style="width:20%">
+                  <img src="./img/logo.JPG" alt="logo" style="width:20%">
 
                   <div class="header">
                       <h1>Home-X Building Management Portal | Log In</h1>

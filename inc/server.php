@@ -1,4 +1,4 @@
-<?php include "./config/dbinfo.inc" ?>
+<?php include "../config/dbinfo.inc" ?>
 <?php
       session_start();
 

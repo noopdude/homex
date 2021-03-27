@@ -1,4 +1,4 @@
-<?php include('server.php') ?>
+<?php include('../inc/server.php') ?>
 
 <!doctype html>
 <html>
