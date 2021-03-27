@@ -148,7 +148,7 @@
                             <label for="remarks">Closure Remarks:  </label>
                           </div>
                           <div class="col-75">
-                            <textarea id="desc" name="remarks" placeholder="Please provide closure comments.." style="height:200px"></textarea>
+                            <textarea id="desc" name="remarks" placeholder="Please provide closure comments.." style="height:200px" required></textarea>
                           </div>
                       </div>
                         <input type="submit" class="button" style="margin: 10px; float: right" name="close_pr" value="Close the Request/s" >
@@ -158,7 +158,7 @@
                             <label for="remarks">Re-open Remarks:  </label>
                           </div>
                           <div class="col-75">
-                            <textarea id="desc" name="remarks" placeholder="Please provide reopen comments.." style="height:200px"></textarea>
+                            <textarea id="desc" name="remarks" placeholder="Please provide reopen comments.." style="height:200px" required></textarea>
                           </div>
                       </div>
                         <input type="submit" class="button" name="reopen_pr" style="margin: 10px; float: right"1 value="Re-Open the Request/s" >
@@ -200,20 +200,20 @@
                       $username = $_SESSION['username'];
                       $pr_close_list = $_POST['prlist'];
                       $arrayLength =  count($pr_close_list);
-
                       if (strlen($remarks) AND $arrayLength > 0 ){
                             ClosePR($db, $pr_close_list, $remarks, $username);
                       }
+                      //echo "<script> location.replace(\"paymentsmain.php\"); </script>";
                 }
-                if(isset($_POST['reopen_sr'])){
+                if(isset($_POST['reopen_pr'])){
                       $remarks = htmlentities($_POST['remarks']);
                       $username = $_SESSION['username'];
                       $pr_close_list = $_POST['prlist'];
                       $arrayLength =  count($pr_close_list);
-
                       if (strlen($remarks) AND $arrayLength > 0 ){
                             ReOpenPR($db, $pr_close_list, $remarks, $username);
                       }
+                      //echo "<script> location.replace(\"paymentsmain.php\"); </script>";
                 }
             ?>
       </body>
