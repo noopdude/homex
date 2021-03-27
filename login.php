@@ -52,7 +52,7 @@
             <?php header("location:index.php"); ?>
 
         <?php endif  ?>
-        <div class="footer">
+        <div class="container">
           <p>Home-X Beta Version | Engineered by LIAN | Powered by AWS</p>
         </div>
     </body>

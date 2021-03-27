@@ -100,7 +100,7 @@
 
 
         </div>
-        <div class="footer">
+        <div class="container">
           <p>Home-X Beta Version | Engineered by LIAN | Powered by AWS</p>
         </div>
     </body>
