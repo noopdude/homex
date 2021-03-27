@@ -184,7 +184,7 @@ function UpdateHome($db, $home_name, $home_status,  $home_owner_username,$mainte
               if (empty(trim($other_dues[$i]))){$other_dues[$i] = 0;}
 
               $query = "UPDATE homex.homes SET status = '$home_status[$i]', home_owner_username = '$home_owner_username[$i]' , maintenance_dues = $maintenance_dues[$i] , other_dues = $other_dues[$i] WHERE home_name = '$home_name[$i]' ";
-              echo $query;
+              //echo $query;
               mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
               if(!mysqli_query($db, $query)) {
                   array_push($errors, "Error updating Home: $home_name[$i] ");

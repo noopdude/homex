@@ -142,7 +142,7 @@
                             <label for="remarks">Closure Remarks:  </label>
                           </div>
                           <div class="col-75">
-                            <textarea id="desc" name="remarks" placeholder="Please provide closure comments.." style="height:200px"></textarea>
+                            <textarea id="desc" name="remarks" placeholder="Please provide closure comments.." style="height:200px" required></textarea>
                           </div>
                       </div>
                         <input type="submit" class="button" style="margin: 10px; float: right" name="close_sr" value="Close the Request/s" >
@@ -152,7 +152,7 @@
                             <label for="remarks">Re-open Remarks:  </label>
                           </div>
                           <div class="col-75">
-                            <textarea id="desc" name="remarks" placeholder="Please provide reopen comments.." style="height:200px"></textarea>
+                            <textarea id="desc" name="remarks" placeholder="Please provide reopen comments.." style="height:200px" required></textarea>
                           </div>
                       </div>
                         <input type="submit" class="button" style="margin: 10px; float: right" name="reopen_sr" value="Re-Open the Request/s" >
@@ -198,6 +198,7 @@
                       if (strlen($remarks) AND $arrayLength > 0 ){
                             CloseSR($db, $sr_close_list, $remarks, $username);
                       }
+                      //echo "<script> location.replace(\"servicerequestmain.php\"); </script>";
                 }
                 if(isset($_POST['reopen_sr'])){
                       $remarks = htmlentities($_POST['remarks']);
@@ -208,6 +209,7 @@
                       if (strlen($remarks) AND $arrayLength > 0 ){
                             ReOpenSR($db, $sr_close_list, $remarks, $username);
                       }
+                      //echo "<script> location.replace(\"servicerequestmain.php\"); </script>";
                 }
             ?>
       </body>
